@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>grupal 1.4</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script defer type="module" src="assets/src/index.js"></script>
+</head>
+
+<body>
+
+    <div class="box">
+        <section class="section-company">
+            <form id="company-form">
+                <h3>Ingresar compañías</h3><br>
+
+                <label for="company-name">Nombre Compañia</label>
+                <br>
+                <input type="text" id="company-name"><br><br>
+
+                <label for="company-rut">Rut</label><br>
+                <input type="text" id="company-rut" name="rut" placeholder="Ej. 12345678-9" required><br><br>
+                
+                <button type="submit" id="load-company">Registrar Empresa</button>
+            </form>
+            <ul id="company-loaded">
+            </ul>
+        </section>
+
+        <section class="section-import">
+            <form id="products-form">
+                <h3>Ingresar productos importados</h3><br>
+
+                <label for="company-id-ref">Ingresar companía que realiza la importación</label><br>
+                <select name="no-option" id="company-id-ref">
+                    <option value="no-company" disabled>No Company Selected</option>
+                </select><br><br>
+
+                <label for="product-name">Nombre Producto</label><br>
+                <input type="text" id="product-name"><br><br>
+
+                <label for="product-amount">Cantidad Productos</label><br>
+                <input type="text" id="product-amount" required><br><br>
+
+                <label for="unit-price">Precio Unitario</label><br>
+                <input type="text" id="unit-price" required><br><br>
+
+                <button type="submit" id="load-product">Cargar Productos</button>
+            </form>
+            <ul id="product-loaded">
+            </ul>
+        </section>
+    </div>
+
+</body>
+
+</html>

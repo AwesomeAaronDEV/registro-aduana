@@ -1,0 +1,20 @@
+body{
+    background: #68ad9e;
+}
+
+.box {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.section-company {
+    margin: 2rem;
+    padding: 2rem;
+    border: solid #1a5749 ;
+}
+
+.section-import {
+    margin: 2rem;
+    padding: 2rem;
+    border: solid #1a5749 ;
+}
