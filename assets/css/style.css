@@ -18,3 +18,7 @@ body{
     padding: 2rem;
     border: solid #1a5749 ;
 }
+
+#tablaProductos{
+    display: none ;
+}
