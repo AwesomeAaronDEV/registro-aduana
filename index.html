@@ -5,53 +5,84 @@
     <meta charset="UTF-8">
     <title>grupal 1.4</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <script defer type="module" src="assets/src/index.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
 <body>
 
-    <div class="box">
-        <section class="section-company">
-            <form id="company-form">
-                <h3>Ingresar compañías</h3><br>
+    <div class="container mt-5">
+      <div class="row justify-content-center">  
+        <div class="col-md-6">
+            <form id="company-form" class="card p-4 bg-light"> 
+                <h3 class="mb-3">Ingresar compañías</h3>
 
                 <label for="company-name">Nombre Compañia</label>
-                <br>
-                <input type="text" id="company-name"><br><br>
+                <input type="text" id="company-name"  class="form-control mb-3">
 
-                <label for="company-rut">Rut</label><br>
-                <input type="text" id="company-rut" name="rut" placeholder="Ej. 12345678-9" required><br><br>
+                <label for="company-rut">Rut</label>
+                <input type="text" id="company-rut" name="rut"  class="form-control mb-3" placeholder="Ej. 12345678-9" required>
                 
-                <button type="submit" id="load-company">Registrar Empresa</button>
+                <div class="col-12">
+                    <button type="submit" id="load-company" class="btn btn-primary">Registrar Empresa</button>
+                </div>
             </form>
-            <ul id="company-loaded">
-            </ul>
-        </section>
+            <div id="company-loaded" class="mt-2"></div>
+        </div>
 
-        <section class="section-import">
-            <form id="products-form">
-                <h3>Ingresar productos importados</h3><br>
+        <div class="col-md-6">
+            <form id="products-form" class="card p-4 bg-light">
+                <h3 class="mb-3">Ingresar productos importados</h3>
 
-                <label for="company-id-ref">Ingresar companía que realiza la importación</label><br>
-                <select name="no-option" id="company-id-ref">
+                <label for="company-id-ref">Ingresar compañía que realiza la importación</label>
+                <select name="no-option" id="company-id-ref" class="form-select mb-3">
                     <option value="no-company" disabled>No Company Selected</option>
-                </select><br><br>
+                </select>
 
-                <label for="product-name">Nombre Producto</label><br>
-                <input type="text" id="product-name"><br><br>
+                <label for="product-name">Nombre Producto</label>
+                <input type="text" id="product-name" class="form-control mb-3">
 
-                <label for="product-amount">Cantidad Productos</label><br>
-                <input type="text" id="product-amount" required><br><br>
+                <label for="product-amount">Cantidad Productos</label>
+                <input type="text" id="product-amount" class="form-control mb-3" required>
 
-                <label for="unit-price">Precio Unitario</label><br>
-                <input type="text" id="unit-price" required><br><br>
-
-                <button type="submit" id="load-product">Cargar Productos</button>
+                <label for="unit-price">Precio Unitario</label>
+                <input type="text" id="unit-price" class="form-control mb-3" required>
+                <div class="col-12">
+                    <button type="submit" id="load-product" class="btn btn-success">Cargar Productos</button>
+                </div>
             </form>
-            <ul id="product-loaded">
-            </ul>
-        </section>
+            <div id="tablaProductos" class="card p-3 mt-4">
+                <table class="table table-striped" id="tabla" style="width:100%">
+                <thead>
+                    <tr>
+                    <th class="px-2 bg-white">ID Importadora</th>
+                    <th class="px-2 bg-white">ID producto</th>
+                    <th class="px-2 bg-white">Producto</th>
+                    <th class="px-2 bg-white">N° Productos</th>
+                    <th class="px-2 bg-white">Valor Producto</th>
+                    </tr>
+                </thead>
+                <tbody id="product-loaded" class="text-center">
+                </tbody>
+                </table>
+            </div>
+        </div>
+        <div>
+        <div class="row mt-5">
+            
+            <div class="col-12 card p-4 bg-light">
+                <h3 class="mb-3 text-center">Datos importaciones</h3>
+                <div id="total-import-write"></div>
+                <div id="total-product-write"></div>
+                <div id="total-price-write"></div>
+                <div class="col-12 d-flex justify-content-center">
+                    <button type="button" id="total-imports" class="btn btn-warning">Conocelos aquí</button>
+                </div>
+            </div>
+        </div>
+      </div>  
     </div>
+    <script defer type="module" src="assets/js/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 </body>
 
