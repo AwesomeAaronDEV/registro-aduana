@@ -1,7 +1,18 @@
 body{
-    background: #68ad9e;
+
+    background-color: #2e2e2e !important;
+}
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+    background-color: #495057 !important;
+    color: #c0f8ec  !important;
 }
 
+input[type="radio"] {
+    accent-color: #1a5749 !important;
+}
 .box {
     display: flex;
     flex-wrap: wrap;
@@ -11,6 +22,21 @@ body{
     margin: 2rem;
     padding: 2rem;
     border: solid #1a5749 ;
+}
+.container .card {
+    background-color: #495057 !important;
+    color: #c0f8ec !important;
+}
+
+.btn-primary {
+    background-color: #6c757d !important;
+    border-color: #6c757d !important;
+    color: #c0f8ec !important;
+}
+
+.table th, .table td {
+    background-color: #343a40 !important;
+    color: #c0f8ec  !important;
 }
 
 .section-import {

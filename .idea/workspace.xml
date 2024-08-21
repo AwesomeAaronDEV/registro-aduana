@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37283212-f6c5-4d98-abe3-2208d3a0e065" name="Changes" comment="" />
+    <list default="true" id="3219a170-4bf8-44b7-b3a0-6b9576f24bea" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/js/entities/Company.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/entities/CompanyImports.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/entities/CompanyImportsExtended.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Grupal1.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/Company.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/CompanyImports.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,26 +25,38 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "AwesomeAaronDEV"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/AwesomeAaronDEV/registro-aduana",
+    "accountId": "befab77c-595d-480d-90b0-a0caeb1cec29"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 4
+  &quot;associatedIndex&quot;: 8
 }</component>
-  <component name="ProjectId" id="2kUgASkmUBRE7Eyo8o1NdF10JhJ" />
+  <component name="ProjectId" id="2kwrOjsM2D3CAt9ZaIn8DbpQHXJ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "registro-aduana-Ignacioh",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -43,13 +67,13 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="37283212-f6c5-4d98-abe3-2208d3a0e065" name="Changes" comment="" />
-      <created>1723343428402</created>
+      <changelist id="3219a170-4bf8-44b7-b3a0-6b9576f24bea" name="Changes" comment="" />
+      <created>1724205449707</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1723343428402</updated>
-      <workItem from="1723343431162" duration="2201000" />
-      <workItem from="1723399959371" duration="6531000" />
+      <updated>1724205449707</updated>
+      <workItem from="1724205451095" duration="209000" />
+      <workItem from="1724205708230" duration="677000" />
     </task>
     <servers />
   </component>
