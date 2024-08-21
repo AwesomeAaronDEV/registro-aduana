@@ -3,87 +3,158 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>grupal 1.4</title>
+    <title>Importaciones</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script defer type="module" src="assets/js/index.js"></script>
 </head>
 
 <body>
 
     <div class="container mt-5">
-      <div class="row justify-content-center">  
-        <div class="col-md-6">
-            <form id="company-form" class="card p-4 bg-light"> 
-                <h3 class="mb-3">Ingresar compañías</h3>
+        <div class="row justify-content-center">
+            <!-- Formulario para Ingresar Compañías -->
+            <div class="col-md-6">
+                <form id="company-form" class="card p-4 bg-light">
+                    <h3 class="mb-3">Ingresar Compañías</h3>
 
-                <label for="company-name">Nombre Compañia</label>
-                <input type="text" id="company-name"  class="form-control mb-3">
+                    <label for="company-name">Nombre Compañía</label>
+                    <input type="text" id="company-name" class="form-control mb-3">
 
-                <label for="company-rut">Rut</label>
-                <input type="text" id="company-rut" name="rut"  class="form-control mb-3" placeholder="Ej. 12345678-9" required>
+                    <label for="company-rut">RUT</label>
+                    <input type="text" id="company-rut" class="form-control mb-3" placeholder="Ej. 12345678-9" required>
+
+                    <label for="company-size">Tamaños de Empresa</label>
+                    <select id="company-size" class="form-select mb-3">
+                        <option value=0 disabled selected>Seleccione el tamaño de la empresa</option>
+                        <option value="1">Pequeña</option>
+                        <option value="2">Mediana</option>
+                        <option value="3">Gran Empresa</option>
+                    </select>
+
+                    <div class="col-12">
+                        <button type="submit" id="load-company" class="btn btn-primary">Registrar Empresa</button>
+                    </div>
+                </form>
+                <div id="company-loaded" class="mt-2"></div>
+            </div>
+
+            <!-- Formulario para Ingresar Productos Importados -->
+            <div class="col-md-6">
+                <form id="products-form" class="card p-4 bg-light">
+                    <h3 class="mb-3">Ingresar Productos Importados</h3>
+
+                    <label for="company-id-ref">Ingresar Compañía que Realiza la Importación</label>
+                    <select id="company-id-ref" class="form-select mb-3">
+                        <option value=0 disabled selected>Seleccione una compañía</option>
+                    </select>
+
+                    <label for="product-name">Nombre Producto</label>
+                    <input type="text" id="product-name" class="form-control mb-3">
+
+                    <label for="product-amount">Cantidad Productos</label>
+                    <input type="text" id="product-amount" class="form-control mb-3" required>
+
+                    <label for="unit-price">Precio Unitario</label>
+                    <input type="text" id="unit-price" class="form-control mb-3" required>
+
+                    <label for="product-rubro">Rubro del Producto</label>
+                    <select id="product-rubro" class="form-select mb-3">
+                        <option value=0 disabled selected>Seleccionar un rubro</option>
+                        <option value=1>Alimentos y Bebidas</option>
+                        <option value=2>Productos Químicos</option>
+                        <option value=3>Maquinaria y Equipos</option>
+                        <option value=4>Automóviles y Partes</option>
+                        <option value=5>Textiles y Confecciones</option>
+                        <option value=6>Productos Electrónicos</option>
+                        <option value=7>Metales y Minerales</option>
+                    </select>
+
+                    <div class="col-12">
+                        <button type="submit" id="load-product" class="btn btn-primary">Registrar Producto</button>
+                    </div>
+                </form>
+                <div id="company-loaded" class="mt-2"></div>
+            </div>
+
+            <!-- Filtros y Tablas -->
+            <div class="col-md-12 mt-4">
+                <!-- Filtro de Productos -->
+                <form id="filter-form" class="card p-4 bg-light">
+                    <h3 class="mb-3">Filtrar Productos</h3>
+                    <label for="filter-category">Estado de Importación</label>
+                    <select id="filter-category" class="form-select mb-3">
+                        <option value=0 disabled selected>Seleccionar una opción</option>
+                        <option value=1>Aprobado</option>
+                        <option value=2>Pendiente</option>
+                        <option value=3>Rechazado</option>
+                    </select>
+                    <button type="submit" id="filter-products" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalImportaciones">Filtrar Productos</button>
+                </form>
+
+
+
+                <!-- Tabla de Detalles de Importaciones -->
+                <div class="card mt-4 p-4 bg-light">
+                    <h3 class="mb-3">Detalles de Importaciones</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Compañía ID</th>
+                                <th>Nombre Compañía</th>
+                                <th>RUT</th>
+                                <th>Tamaño</th>
+                                <th>ID Producto</th>
+                                <th>Nombre Producto</th>
+                                <th>Cantidad</th>
+                                <th>Precio Unitario</th>
+                                <th>Rubro</th>
+                                <th>Visación</th>
+                            </tr>
+                        </thead>
+                        <tbody id="import-table-body">
+                        </tbody>
+                    </table>
+                </div>
                 
-                <div class="col-12">
-                    <button type="submit" id="load-company" class="btn btn-primary">Registrar Empresa</button>
-                </div>
-            </form>
-            <div id="company-loaded" class="mt-2"></div>
-        </div>
-
-        <div class="col-md-6">
-            <form id="products-form" class="card p-4 bg-light">
-                <h3 class="mb-3">Ingresar productos importados</h3>
-
-                <label for="company-id-ref">Ingresar compañía que realiza la importación</label>
-                <select name="no-option" id="company-id-ref" class="form-select mb-3">
-                    <option value="no-company" disabled>No Company Selected</option>
-                </select>
-
-                <label for="product-name">Nombre Producto</label>
-                <input type="text" id="product-name" class="form-control mb-3">
-
-                <label for="product-amount">Cantidad Productos</label>
-                <input type="text" id="product-amount" class="form-control mb-3" required>
-
-                <label for="unit-price">Precio Unitario</label>
-                <input type="text" id="unit-price" class="form-control mb-3" required>
-                <div class="col-12">
-                    <button type="submit" id="load-product" class="btn btn-success">Cargar Productos</button>
-                </div>
-            </form>
-            <div id="tablaProductos" class="card p-3 mt-4">
-                <table class="table table-striped" id="tabla" style="width:100%">
-                <thead>
-                    <tr>
-                    <th class="px-2 bg-white">ID Importadora</th>
-                    <th class="px-2 bg-white">ID producto</th>
-                    <th class="px-2 bg-white">Producto</th>
-                    <th class="px-2 bg-white">N° Productos</th>
-                    <th class="px-2 bg-white">Valor Producto</th>
-                    </tr>
-                </thead>
-                <tbody id="product-loaded" class="text-center">
-                </tbody>
-                </table>
+                <!-- modal flitro importarciones -->
+                  <div class="modal fade" id="modalImportaciones" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Productos Importados</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="card mt-4 p-4 bg-light">
+                                <h3 class="mb-3"></h3>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Compañía ID</th>
+                                            <th>ID Producto</th>
+                                            <th>Nombre Producto</th>
+                                            <th>Cantidad</th>
+                                            <th>Precio Unitario</th>
+                                            <th>Rubro</th>
+                                            <th>Visación</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="product-loaded">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
             </div>
         </div>
-        <div>
-        <div class="row mt-5">
-            
-            <div class="col-12 card p-4 bg-light">
-                <h3 class="mb-3 text-center">Datos importaciones</h3>
-                <div id="total-import-write"></div>
-                <div id="total-product-write"></div>
-                <div id="total-price-write"></div>
-                <div class="col-12 d-flex justify-content-center">
-                    <button type="button" id="total-imports" class="btn btn-warning">Conocelos aquí</button>
-                </div>
-            </div>
-        </div>
-      </div>  
     </div>
-    <script defer type="module" src="assets/js/index.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
 </html>

@@ -1,105 +1,205 @@
-import { Company } from './Company.js';
-import { CompanyImports } from './CompanyImports.js';
-
 let companies = [];
 let imports = [];
 let companyCounter = 1;
 let importCounter = 1;
 
-//Funciones para crear un valor incremental
-function generateCompanyId(){
+let companySizeQualify = {
+    1: "Pequeña",
+    2: "Mediana",
+    3: "Gran Empresa"
+}
+
+let importQualify = {
+    1: "Aprobado",
+    2: "Pendiente",
+    3: "Rechazado"
+}
+
+function generateCompanyId() {
     return companyCounter++;
 }
-function generateImportsId(){
+
+function generateImportId() {
     return importCounter++;
 }
 
-function mostrarTabla (){
-    var tabla = document.getElementById('tablaProductos');
-    tabla.style.setProperty('display', 'block', 'important');
+function mostrarMensaje(mensaje) {
+    alert(mensaje);
 }
 
 function registerCompany(event) {
     event.preventDefault();
 
-    // 1. Carga de los datos desde el DOM
-    const companyId = generateCompanyId();
     const companyName = document.getElementById('company-name').value;
     const companyRut = document.getElementById('company-rut').value;
+    const companySizeRaw = document.getElementById('company-size').value;
 
-    //2. Crear una instancia de Company, y lo agregamos al array
-    const company = new Company(companyId, companyName, companyRut);
-    companies.push(company);
-    console.log('Empresa registrada:', company);
+    const companySizeQ = parseInt(companySizeRaw, 10);
 
-    //3. Agregar la nueva empresa al Dropdown
-    const newElement = document.createElement('option');
-    newElement.setAttribute('value', companyId);
-    newElement.innerHTML = companyName;
-    document.getElementById('company-id-ref').appendChild(newElement);
+    if (companyName === '' || companyRut === '' || companySizeQ == 0) {
+        mostrarMensaje('Por favor, complete todos los campos de la compañía.');
+        return;
+    }
 
-    //4. Agregar la empresa al DOM
+    let companySize = companySizeQualify[companySizeQ];
 
-    let empresa = `<div class="card p-4 bg-primary text-light"><p class="fs-5 mb-1">Empresa registrada con éxito</p>ID Empresa: ${company.registerId}<br> Nombre: ${company.name}<br>Rut: ${company.rut}</div>`;
-     document.getElementById('company-loaded').innerHTML = empresa;
+    const companyId = generateCompanyId();
+    const newCompany = { id: companyId, name: companyName, rut: companyRut, size: companySize };
+    companies.push(newCompany);
+
+    alert("Compañía creada correctamente.");
+
+    const companySelect = document.getElementById('company-id-ref');
+    const newOption = document.createElement('option');
+    newOption.value = companyId;
+    newOption.textContent = companyName;
+    companySelect.appendChild(newOption);
+
+    document.getElementById('company-form').reset();
 }
 
 function registerProduct(event) {
     event.preventDefault();
 
-    //1. Carga de los datos desde el DOM
-    const companyIdRef = document.getElementById('company-id-ref').value;
-    const importsId = generateImportsId();
+    /*
+    * TODO:
+    *  productrubro se valide como numerico y valor de productRubro setee el estado de la importacion
+    * */
+
+    const companyIdRaw = document.getElementById('company-id-ref').value;
     const productName = document.getElementById('product-name').value;
-    const productsAmountRaw = document.getElementById('product-amount').value;
-    const unitPriceRaw= document.getElementById('unit-price').value;
+    const productAmountRaw = document.getElementById('product-amount').value;
+    const unitPrice = document.getElementById('unit-price').value;
+    const productRubroRaw = document.getElementById('product-rubro').value;
 
-    const productsAmount = parseInt(productsAmountRaw);
-    const unitPrice = parseInt(unitPriceRaw);
+    const companyId = parseInt(companyIdRaw, 10);
+    const productRubro = parseInt(productRubroRaw, 10);
+    const productAmount = parseInt(productAmountRaw, 10);
+    let importCategory = "";
 
-    //2. Crea una instancia de CompanyImports, y lo agraga al array
-    const companyImports = new CompanyImports(companyIdRef, importsId, productName, productsAmount, unitPrice);
-    imports.push(companyImports);
 
-    console.log('Producto registrado:', companyImports);
-
-    //4. Agregar el producto al DOM
-
-    mostrarTabla();
-
-    let products = { idImportadora: companyImports.companyId, iDProducto: companyImports.importsId, 
-    Producto: companyImports.products, cantidadIngresada: companyImports.productsAmount, valorUnidad: companyImports.unitPrice};
-    //4. Agregar el producto al DOM
-    const tbody = document.getElementById('product-loaded');
-    let fila = document.createElement('tr');
-
-    for (let clave in products) {
-        let celda = document.createElement('td');
-        celda.textContent = products[clave]; // itera sobre las llaves
-        fila.appendChild(celda); 
+    if (productRubro != 0) {
+        if (productRubro == 1 || productRubro == 5 || productRubro == 7) {
+            importCategory = importQualify[1];
+        } else if (productRubro == 3 || productRubro == 4 || productRubro == 6 ) {
+            importCategory = importQualify[2];;
+        } else if (productRubro == 2) {
+            importCategory = importQualify[3];;
+        }
+    } else {
+        mostrarMensaje('Por favor, seleccione un rubro.');
+        return;
     }
-    
-    tbody.appendChild(fila);
+
+    if (companyId === '' || productName === '' || productAmount === '' || unitPrice == 0) {
+        mostrarMensaje('Por favor, complete todos los campos requeridos.');
+        return;
+    }
+
+    const importRecord = {
+        id: generateImportId(),
+        companyId: parseInt(companyId),
+        productName: productName,
+        productAmount: productAmount,
+        unitPrice: unitPrice,
+        productRubro: productRubro,
+        importCategory: importCategory
+    };
+    imports.push(importRecord);
+
+    alert("Producto registrado correctamente.");
+
+    displayProducts();
+    displayImportTable();
+
+    document.getElementById('products-form').reset();
 }
-function sumTotalProductImportPrice(){
-    const totalProduct = imports.reduce((accumulator, imports) => {
-        return accumulator + (imports.productsAmount)
-    }, 0)
-    const totalPrice = imports.reduce((accumulator, imports) => {
-        return accumulator + (imports.unitPrice * imports.productsAmount)
-    }, 0)
 
-    const totalAmountimport = imports.length;
-    const writeAmount = document.getElementById('total-import-write');
-    const writeTotalImports = document.getElementById('total-product-write');
+function displayProducts() {
+    const productTableBody = document.getElementById('product-loaded');
+    productTableBody.innerHTML = '';
 
-    writeAmount.innerHTML = `Total importaciones: ${totalAmountimport} <br>`;
-    writeTotalImports.innerHTML = `Total importaciones: ${totalProduct} <br> Valor total importaciones: ${totalPrice}`;
+    for (let i = 0; i < imports.length; i++) {
+        let product = imports[i];
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${product.companyId}</td>
+            <td>${product.id}</td>
+            <td>${product.productName}</td>
+            <td>${product.productAmount}</td>
+            <td>${product.unitPrice}</td>
+            <td>${product.productRubro}</td>
+            <td>${product.importCategory}</td>
+        `;
+        productTableBody.appendChild(tr);
+    }
+}
+
+function displayImportTable() {
+    const importTableBody = document.getElementById('import-table-body');
+    importTableBody.innerHTML = '';
+
+    for (let i = 0; i < imports.length; i++) {
+        const product = imports[i];
+        const company = findCompanyById(product.companyId);
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${company ? company.id : 'No disponible'}</td>
+            <td>${company ? company.name : 'No disponible'}</td>
+            <td>${company ? company.rut : 'No disponible'}</td>
+            <td>${company ? company.size : 'No disponible'}</td>
+            <td>${product.id}</td>
+            <td>${product.productName}</td>
+            <td>${product.productAmount}</td>
+            <td>${product.unitPrice}</td>
+            <td>${product.productRubro}</td>
+            <td>${product.importCategory}</td>
+        `;
+        importTableBody.appendChild(tr);
+    }
+}
+
+function findCompanyById(companyId) {
+    for (let i = 0; i < companies.length; i++) {
+        if (companies[i].id === companyId) {
+            return companies[i];
+        }
+    }
+    return null;
+}
+
+function filterProducts(event) {
+    event.preventDefault();
+
+    const filterCategory = document.getElementById('filter-category').value;
+    const filterMatch = importQualify[filterCategory];
+
+    const filteredImports = [];
+    for (let i = 0; i < imports.length; i++) {
+        if (imports[i].importCategory === filterMatch) {
+            filteredImports.push(imports[i]);
+        }
+    }
+
+    const productTableBody = document.getElementById('product-loaded');
+    productTableBody.innerHTML = '';
+
+    for (let i = 0; i < filteredImports.length; i++) {
+        let product = filteredImports[i];
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${product.companyId}</td>
+            <td>${product.id}</td>
+            <td>${product.productName}</td>
+            <td>${product.productAmount}</td>
+            <td>${product.unitPrice}</td>
+            <td>${product.productRubro}</td>
+            <td>${product.importCategory}</td>
+        `;
+        productTableBody.appendChild(tr);
+    }
 }
 
 document.getElementById('company-form').addEventListener('submit', registerCompany);
 document.getElementById('products-form').addEventListener('submit', registerProduct);
-
-document.getElementById('total-imports').addEventListener('click', sumTotalProductImportPrice);
-
-/*const suma = numeros.reduce((acumulador, valorActual) => acumulador + valorActual, 0);*/
+document.getElementById('filter-form').addEventListener('submit', filterProducts);
